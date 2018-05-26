@@ -5,7 +5,7 @@ import re
 
 def slugify(string):
     pattern = r'[^\w+]'
-    return re.sub(pattern, '-', string)
+    return re.sub(pattern, '-', str(string))
 
 
 post_tags = database.Table(
@@ -32,7 +32,7 @@ class Post(database.Model):
             self.slug = slugify(self.title)
 
     def __repr__(self):
-        return '<Post id: {}, title: {}>'.format(self.id, self.title)
+        return '{}'.format(self.title)
 
 
 class Tag(database.Model):
@@ -45,5 +45,5 @@ class Tag(database.Model):
         self.slug = slugify(self.name)
 
     def __repr__(self):
-        return '<Tag id: {}, name: {}>'.format(self.id, self.name)
+        return '{}'.format(self.name)
 
